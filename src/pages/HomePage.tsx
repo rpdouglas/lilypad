@@ -65,6 +65,9 @@ const TESTIMONIALS = [
 export default function HomePage() {
   return (
     <>
+      <title>Lily Pad Strategy & Design</title>
+      <meta name="description" content="Lily Pad Strategy & Design — brand strategy, web development, and design systems for ambitious founders." />
+
       {/* Hero — above the fold on 375px */}
       <section className="bg-forest text-cream pt-16 pb-20 lg:pt-24 lg:pb-28">
         <div className="max-w-content mx-auto px-6 lg:px-10">

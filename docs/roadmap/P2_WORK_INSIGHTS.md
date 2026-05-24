@@ -33,9 +33,9 @@ First 3 case studies live as MDX. Blog infrastructure running. SEO foundations i
 
 - [x] Meta title + description per page (React 19 native `<title>` and `<meta>`)
 - [x] Open Graph tags for case study and blog pages
-- [ ] `sitemap.xml` generated at build time
-- [ ] `robots.txt`
-- [ ] Semantic HTML audit — headings hierarchy, alt text on all images
+- [x] `sitemap.xml` generated at build time
+- [x] `robots.txt`
+- [x] Semantic HTML audit — headings hierarchy, alt text on all images
 
 ### Content Infrastructure
 
@@ -43,7 +43,7 @@ First 3 case studies live as MDX. Blog infrastructure running. SEO foundations i
 - [x] Content schema validated with Zod (`src/lib/content/schemas.ts`)
 - [x] Content loaders (`src/lib/content/case-studies.ts`, `src/lib/content/blog.ts`)
 - [x] Styled MDX component overrides (`src/components/ui/MDXComponents.tsx`)
-- [ ] `/scaffold` skill verified for generating new case study MDX files
+- [x] `/scaffold` skill verified for generating new case study MDX files
 
 ## Persona Gate
 

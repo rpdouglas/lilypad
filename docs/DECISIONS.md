@@ -34,7 +34,6 @@ All four P1 page components are dynamically imported via `lazy()` in `App.tsx`. 
 
 Wrapped all public routes in a `<MotionConfig reducedMotion="user">` provider rather than adding per-component `useReducedMotion()` hooks. This means every Framer Motion animation throughout the site automatically respects the user's OS-level "reduce motion" preference — one declaration covers all current and future pages nested under `RootLayout`.
 
----
 
 ## 2026-05-24 — MDX content pipeline uses @mdx-js/rollup + Zod; no Contentlayer
 
@@ -57,3 +56,21 @@ Used React 19's native support for document metadata tags (`<title>` and `<meta>
 ## 2026-05-24 — Brand logo assets integrated into Navbar, Footer, and Favicon metadata
 
 Integrated high-fidelity transparent brand PNG logos into the Navbar (using responsive scaling `h-6 lg:h-7`) and the Footer (at `h-8`), establishing descriptive screen-reader `alt` tags and active-state tap configurations. Integrated the circular logo stamp as an `apple-touch-icon` link in `index.html` for high-density platform shortcuts, establishing a structural governance model that mandates vector SVGs for all subsequent vector asset designs.
+
+---
+
+## 2026-05-24 — Automated build-time sitemap.xml generator script
+
+Implemented a custom ES-module Node script (`scripts/generate-sitemap.js`) that automatically scans our dynamic case studies and blog posts to compile a complete XML sitemap at build time. Triggered via a `postbuild` hook in `package.json` to write directly to `dist/sitemap.xml`, ensuring search indexing remains up-to-date with dynamic MDX content without any manual maintenance.
+
+---
+
+## 2026-05-24 — robots.txt crawler configuration
+
+Created a clean `public/robots.txt` specifying custom Allow and Disallow policies. Disallowed indexing on the `/portal/` directory to protect private client layouts and data from public crawl cycles, while declaring the canonical sitemap reference at `https://lilypad.design/sitemap.xml`.
+
+---
+
+## 2026-05-24 — Hoisted document metadata inside core pages
+
+Completed the meta tag audit by adding React 19 native hoisting tags (`<title>` and `<meta name="description">`) directly inside `HomePage.tsx`, `AboutPage.tsx`, `ServicesPage.tsx`, and `StartPage.tsx` to ensure all core page routes define custom SEO indexing details.

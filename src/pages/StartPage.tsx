@@ -13,6 +13,9 @@ const TRUST_SIGNALS = [
 export default function StartPage() {
   return (
     <>
+      <title>Book a Call | Lily Pad Strategy & Design</title>
+      <meta name="description" content="Ready to launch? Book a free, no-obligation 30-minute discovery call to discuss your brand strategy, web development, or design system goals." />
+
       {/* Page header — minimal, no distraction */}
       <section className="bg-forest text-cream pt-16 pb-12 lg:pt-24 lg:pb-16">
         <div className="max-w-content mx-auto px-6 lg:px-10">
