@@ -34,7 +34,6 @@ All four P1 page components are dynamically imported via `lazy()` in `App.tsx`. 
 
 Wrapped all public routes in a `<MotionConfig reducedMotion="user">` provider rather than adding per-component `useReducedMotion()` hooks. This means every Framer Motion animation throughout the site automatically respects the user's OS-level "reduce motion" preference — one declaration covers all current and future pages nested under `RootLayout`.
 
----
 
 ## 2026-05-24 — MDX content pipeline uses @mdx-js/rollup + Zod; no Contentlayer
 
