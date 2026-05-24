@@ -55,6 +55,12 @@ Enforce on every file delivered:
 - **No `console.log`** in production code paths.
 - **Firebase calls only in `src/lib/firebase/`** — never in components or pages directly.
 - **Compile-as-you-go** — after completing a set of related files, run `npm run build` before moving on.
+- **Copy strings with contractions use double-quoted strings** — single-quoted JS strings break if copy contains apostrophes (`don't`, `We'll`, `it's`, `you're`, etc.). Always use double quotes for prose copy: `"We'll tell you..."` not `'We'll tell you...'`.
+- **Route pages must use `React.lazy()`** — never a static import for a page component in the router. Pattern: `const MyPage = lazy(() => import('@/pages/MyPage'))` wrapped in `<Suspense fallback={null}>`.
+- **New layouts wrapping animated routes need `<MotionConfig reducedMotion="user">`** — add as the outermost Framer Motion wrapper so all descendant animations automatically respect the OS "reduce motion" setting.
+- **Interactive elements must have a visible focus ring** — custom `<button>` or `<a>` elements with non-default styles must add `focus-visible:outline-none focus-visible:shadow-coral`. No bare buttons without a focus indicator.
+- **Tailwind v4 `@theme` size token naming** — `--max-width-*` → `max-w-*` utilities; `--width-*` → `w-*` (exact width). Never use `--width-content` expecting `max-w-content` — it generates `w-content`, not `max-w-content`.
+- **No arbitrary Tailwind sizing** — use named tokens only. `max-w-content` not `max-w-[900px]`; `px-6 lg:px-10` not `px-[24px]`.
 
 ---
 

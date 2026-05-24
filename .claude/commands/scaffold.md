@@ -35,7 +35,7 @@ export default function <Name>Page() {
   return (
     <>
       <section className="bg-cream py-16 lg:py-24">
-        <div className="max-w-content mx-auto px-10">
+        <div className="max-w-content mx-auto px-6 lg:px-10">
           <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-coral mb-4 block">
             Section Label
           </span>
@@ -53,7 +53,12 @@ export default function <Name>Page() {
 ```
 
 After creating the file:
-1. Read the router file (likely `src/main.tsx`) and show the user exactly where to add the new route and the exact import line to use
+1. Read the router file (`src/App.tsx`) and show the user exactly where to add the new route. Route pages MUST use `React.lazy()` — never a static import:
+   ```tsx
+   const <Name>Page = lazy(() => import('@/pages/<Name>Page'))
+   // in the router:
+   { path: '/<name>', element: <Suspense fallback={null}><Name>Page /></Suspense> }
+   ```
 2. Check `docs/SITEMAP.md` — if the route exists there with status 🔴 Not built, note that the status should be updated to 🟡 In progress
 
 ---

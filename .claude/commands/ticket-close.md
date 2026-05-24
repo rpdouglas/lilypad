@@ -88,6 +88,7 @@ Check changed files for:
 | No PII logged to console, analytics, or error logs | Verified / N/A |
 | New page files have persona annotation comment at the top | Verified / N/A |
 | New UI components have co-located `.test.tsx` files | Verified / N/A |
+| New `.github/workflows/` files using `FirebaseExtended/action-hosting-deploy` have `permissions: checks: write` | Verified / N/A |
 
 ---
 

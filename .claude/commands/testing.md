@@ -71,7 +71,7 @@ Run the tests relevant to the primary persona. These are pass/fail.
 - [ ] **Focus States:** All interactive elements show a visible focus ring? The `Button` component uses `focus:shadow-coral` — confirm custom elements do too.
 - [ ] **Alt Text:** All images have descriptive `alt` text, or `alt=""` if purely decorative.
 - [ ] **WCAG AA Contrast:** All new text meets 4.5:1 minimum contrast ratio.
-- [ ] **Reduced Motion:** New animations respect `@media (prefers-reduced-motion: reduce)`.
+- [ ] **Reduced Motion:** New animations respect the OS reduced-motion setting. Layouts wrapping animated routes must include `<MotionConfig reducedMotion="user">` — a single declaration at the layout level covers all descendant Framer Motion components automatically.
 
 ---
 
@@ -83,8 +83,11 @@ Reference: `docs/BRAND-TOKENS.md`
 - [ ] No hardcoded hex values anywhere in new code (use Tailwind classes only)
 - [ ] No inline styles (no `style={{ ... }}` props)
 - [ ] Section spacing: `py-16 lg:py-24` for standard sections
-- [ ] Content width: `max-w-content mx-auto px-10` applied to all content containers
+- [ ] Content width: `max-w-content mx-auto px-6 lg:px-10` applied to all content containers
+- [ ] No arbitrary Tailwind sizing — run `grep -rn 'max-w-\[\|px-\[' src/` — zero matches required
 - [ ] Overline labels: `font-mono text-[10px] tracking-[0.2em] uppercase text-coral`
+- [ ] Copy strings with contractions use double-quoted strings — run: `grep -rPn "'[^'\"]*'[a-z]" src/ --include="*.tsx" --include="*.ts"` — any match inside a single-quoted string must be converted to a double-quoted string
+- [ ] If `src/index.css` `@theme` was modified: verify size tokens use `--max-width-*` (not `--width-*`) for `max-w-*` utilities
 
 ### Components & Motion
 - [ ] Buttons use `src/components/ui/Button.tsx` — not custom `<button>` elements with hand-rolled styles
