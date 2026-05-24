@@ -1,8 +1,8 @@
 # P2 — Work & Insights
 
-**Status:** ⏳ Next
+**Status:** 🟢 Live
 **Priority:** Critical
-**Started:** —
+**Started:** 2026-05-24
 **Target:** —
 **Primary Personas:** Sarah (reads case studies obsessively), Marcus (reads Insights blog to assess expertise before booking)
 
@@ -14,34 +14,36 @@ First 3 case studies live as MDX. Blog infrastructure running. SEO foundations i
 
 ### Case Studies (`/work`)
 
-- [ ] Work index page — case study archive
-- [ ] Individual case study template — Brief → Approach → Payoff with metrics
-- [ ] Case study 01 (MDX file in `/src/content/work/`)
-- [ ] Case study 02 (MDX file in `/src/content/work/`)
-- [ ] Case study 03 (MDX file in `/src/content/work/`)
-- [ ] Dynamic route — `/work/[slug]`
-- [ ] Results metrics on each study — quantified outcomes, not just process descriptions
+- [x] Work index page — case study archive (`src/pages/WorkPage.tsx`)
+- [x] Individual case study template — Brief → Approach → Payoff with metrics (`src/pages/WorkSlugPage.tsx`)
+- [x] Case study 01 (`src/content/case-studies/atlas-saas.mdx`)
+- [x] Case study 02 (`src/content/case-studies/meridian-consulting.mdx`)
+- [x] Case study 03 (`src/content/case-studies/bloom-health.mdx`)
+- [x] Dynamic route — `/work/:slug`
+- [x] Results metrics on each study — quantified outcomes, not just process descriptions
 
 ### Insights Blog (`/insights`)
 
-- [ ] Insights index page — blog archive
-- [ ] Individual article template
-- [ ] First article (MDX file in `/src/content/insights/`)
-- [ ] Dynamic route — `/insights/[slug]`
+- [x] Insights index page — blog archive (`src/pages/InsightsPage.tsx`)
+- [x] Individual article template (`src/pages/InsightsSlugPage.tsx`)
+- [x] First article (`src/content/blog/why-founder-websites-fail.mdx`)
+- [x] Dynamic route — `/insights/:slug`
 
 ### SEO
 
-- [ ] Meta title + description per page
-- [ ] Open Graph tags for social sharing
+- [x] Meta title + description per page (React 19 native `<title>` and `<meta>`)
+- [x] Open Graph tags for case study and blog pages
 - [ ] `sitemap.xml` generated at build time
 - [ ] `robots.txt`
 - [ ] Semantic HTML audit — headings hierarchy, alt text on all images
 
 ### Content Infrastructure
 
-- [ ] MDX processing pipeline wired in Vite
-- [ ] Content schema validated (frontmatter: title, date, persona, excerpt, metrics)
-- [ ] `/scaffold` skill tested for generating new case study MDX files
+- [x] MDX processing pipeline wired in Vite (`@mdx-js/rollup`)
+- [x] Content schema validated with Zod (`src/lib/content/schemas.ts`)
+- [x] Content loaders (`src/lib/content/case-studies.ts`, `src/lib/content/blog.ts`)
+- [x] Styled MDX component overrides (`src/components/ui/MDXComponents.tsx`)
+- [ ] `/scaffold` skill verified for generating new case study MDX files
 
 ## Persona Gate
 
@@ -52,4 +54,8 @@ Before closing this phase:
 
 ## Decisions Made
 
-<!-- Log decisions as you build -->
+2026-05-24 — MDX content pipeline: `@mdx-js/rollup` + Zod + `import.meta.glob`. No Contentlayer (deprecated 2024). See `docs/adr/ADR-0004-content-pipeline.md`.
+
+2026-05-24 — Content directories use `case-studies/` and `blog/` naming (not `work/` and `insights/`), matching `docs/SITEMAP.md` and the actual directories already created. The original P2 doc used `work/` and `insights/` — corrected here.
+
+2026-05-24 — SEO uses React 19 native document metadata (`<title>`, `<meta>` tags rendered from components, hoisted to `<head>`). No react-helmet required.
