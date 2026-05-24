@@ -10,7 +10,7 @@ export default function PricingPage() {
             Section Label
           </span>
           <h1 className="font-display text-4xl lg:text-5xl font-light text-forest leading-tight mb-6">
-            Page <em className="italic text-coral">Heading</em>
+            Page <em className="italic text-coral">Heading1for</em>
           </h1>
           <p className="font-sans text-base text-stone max-w-xl leading-relaxed">
             TODO: add lead paragraph
