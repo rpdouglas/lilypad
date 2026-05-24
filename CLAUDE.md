@@ -1,0 +1,23 @@
+# CLAUDE.md
+
+## Project Context
+Lily Pad Strategy & Design — consulting site + client portal.
+Stack: React 18, Vite 5, Tailwind CSS v4, Firebase, TypeScript.
+
+## Brand Colors
+Forest Green: #2C3E2D  |  Coral: #E8614A  |  Cream: #FAF8F4
+Stone: #8A9080  |  Dark: #1A2418
+
+## Personas (Always Consider)
+- Sarah (Founder): mobile-first, fast decisions, needs social proof
+- Marcus (Marketing Dir): desktop, process-oriented, needs specifics
+- Dana (Active Client): portal only, mobile + desktop, needs clarity
+
+## Conventions
+- Components: PascalCase, co-located test files (Component.test.tsx)
+- Tailwind only — no inline styles, no CSS modules
+- All new pages require a persona annotation in the file comment
+- Firebase calls only in /lib/firebase/ — never in components directly
+
+## Docs
+Update /docs/ when changing architecture. ADR required for new deps.

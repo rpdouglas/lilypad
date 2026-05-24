@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Lock everything down by default
+    // Nothing is readable or writable unless explicitly allowed below
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Clients can only read their own project data
+    // Expanded in Phase 3 when the portal is built
+    match /clients/{clientId} {
+      allow read: if request.auth != null
+                  && request.auth.token.email == resource.data.email;
+    }
+
+  }
+}
