@@ -13,7 +13,7 @@ export default function PricingPage() {
             Page <em className="italic text-coral">Heading1for</em>
           </h1>
           <p className="font-sans text-base text-stone max-w-xl leading-relaxed">
-            TODO: add lead paragraph
+            TODO: nothing
           </p>
         </div>
       </section>

@@ -11,10 +11,10 @@
 
 | Route                                  | Page Name              | Phase | Status       | Auth Required |
 |----------------------------------------|------------------------|-------|--------------|---------------|
-| /                                      | Home                   | 1     | 🔴 Not built | No            |
-| /services                              | Services Overview      | 1     | 🔴 Not built | No            |
-| /about                                 | About                  | 1     | 🔴 Not built | No            |
-| /start                                 | Start a Project        | 1     | 🔴 Not built | No            |
+| /                                      | Home                   | 1     | 🟡 In progress | No            |
+| /services                              | Services Overview      | 1     | 🟡 In progress | No            |
+| /about                                 | About                  | 1     | 🟡 In progress | No            |
+| /start                                 | Start a Project        | 1     | 🟡 In progress | No            |
 | /work                                  | Case Studies Index     | 2     | ⏳ Upcoming  | No            |
 | /work/[slug]                           | Individual Case Study  | 2     | ⏳ Upcoming  | No            |
 | /insights                              | Blog Index             | 2     | ⏳ Upcoming  | No            |
@@ -83,4 +83,4 @@ Sections: Headline, What to expect, Cal.com embed, Contact form fallback, Trust 
 
 ---
 
-Last updated: May 2026 — update status column as each route ships to production.
+Last updated: 2026-05-24 — P1 pages built; statuses set to 🟡 In progress pending production deploy.
