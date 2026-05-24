@@ -110,6 +110,20 @@ For any new feature, run `/plan` first and wait for `/approve` before writing im
 
 Use `/scaffold` to create pages, components, case studies, and blog posts with brand context pre-applied. Use `/fix` for bugs. Use `/audit` to orient a new session.
 
+## Project Roadmap
+
+Phased build plan lives in `docs/roadmap/`. Start there to understand what phase is active and what comes next.
+
+| File | Purpose |
+|---|---|
+| `docs/roadmap/ROADMAP.md` | Master index — phase status at a glance |
+| `docs/roadmap/P0_FOUNDATION.md` | Foundation (done) |
+| `docs/roadmap/P1_PUBLIC_SITE.md` | Public site MVP (active) |
+| `docs/roadmap/P2_WORK_INSIGHTS.md` → `P7_SCALE.md` | Future phases |
+| `docs/roadmap/BACKLOG.md` | Parking lot for unplaced ideas |
+
+When starting a session: check `ROADMAP.md` for current phase, open the active phase file, run `/read-state`.
+
 ## Conventions
 - Components: PascalCase, co-located test files (`Component.test.tsx`)
 - Tailwind only — no inline styles, no CSS modules
