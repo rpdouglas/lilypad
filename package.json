@@ -3,27 +3,32 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
- "scripts": {
-  "dev":           "vite",
-  "build":         "tsc && vite build",
-  "preview":       "vite preview",
-  "lint":          "eslint .",
-  "lint:fix":      "eslint . --fix",
-  "format":        "prettier --write src/**/*.{ts,tsx}",
-  "format:check":  "prettier --check src/**/*.{ts,tsx}",
-  "test":          "vitest run",
-  "test:watch":    "vitest",
-  "test:coverage": "vitest run --coverage",
-  "test:ui":       "vitest --ui"
-},
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write src/**/*.{ts,tsx}",
+    "format:check": "prettier --check src/**/*.{ts,tsx}",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
+  },
   "dependencies": {
+    "@mdx-js/react": "^3.1.1",
+    "@mdx-js/rollup": "^3.1.1",
     "@tailwindcss/vite": "^4.3.0",
     "firebase": "^12.13.0",
     "framer-motion": "^12.40.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.1",
-    "tailwindcss": "^4.3.0"
+    "remark-frontmatter": "^5.0.0",
+    "remark-mdx-frontmatter": "^5.2.0",
+    "tailwindcss": "^4.3.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

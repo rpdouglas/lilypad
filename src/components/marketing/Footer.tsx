@@ -16,9 +16,14 @@ export default function Footer() {
           <div className="max-w-xs">
             <Link
               to="/"
-              className="font-display text-2xl font-light tracking-wide hover:text-coral-light transition-colors duration-150"
+              className="inline-block hover:opacity-90 transition-opacity duration-150"
+              aria-label="Lily Pad Strategy & Design Home"
             >
-              Lily Pad
+              <img
+                src="/lily_pad_banner_logo.png"
+                className="h-8 w-auto object-contain"
+                alt="Lily Pad Logo"
+              />
             </Link>
             <p className="font-sans text-sm text-stone mt-3 leading-relaxed">
               Strategy and design for founders who are done playing small.

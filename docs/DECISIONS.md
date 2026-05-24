@@ -36,6 +36,24 @@ Wrapped all public routes in a `<MotionConfig reducedMotion="user">` provider ra
 
 ---
 
+## 2026-05-24 — MDX content pipeline uses @mdx-js/rollup + Zod; no Contentlayer
+
+Content for `/work` and `/insights` is authored in `.mdx` files with YAML frontmatter. Vite's `import.meta.glob` loads files eagerly at build time; Zod validates frontmatter schemas in `src/lib/content/`. Contentlayer was considered and rejected — it was deprecated and archived in 2024. Full decision in `docs/adr/ADR-0004-content-pipeline.md`.
+
+---
+
 ## 2026-05-24 — Cal.com embed on `/start` uses iframe, no `@calcom/embed-react` package
 
 The `/start` page embeds Cal.com via a plain `<iframe>` to avoid adding a dependency before an ADR is written. When the Cal.com account is created, replace the placeholder `src` attribute with the real booking URL (`https://cal.com/USERNAME/discovery`). If the richer embed API is needed (pre-fill, theming), open an ADR first.
+
+---
+
+## 2026-05-24 — Native React 19 document metadata for SEO
+
+Used React 19's native support for document metadata tags (`<title>` and `<meta>` rendered inside page components, automatically hoisted to the HTML `<head>` by React). This avoids adding `react-helmet` or `react-helmet-async` to the bundle, reducing dependency footprint and maintaining zero-configuration runtime setup.
+
+---
+
+## 2026-05-24 — Brand logo assets integrated into Navbar, Footer, and Favicon metadata
+
+Integrated high-fidelity transparent brand PNG logos into the Navbar (using responsive scaling `h-6 lg:h-7`) and the Footer (at `h-8`), establishing descriptive screen-reader `alt` tags and active-state tap configurations. Integrated the circular logo stamp as an `apple-touch-icon` link in `index.html` for high-density platform shortcuts, establishing a structural governance model that mandates vector SVGs for all subsequent vector asset designs.

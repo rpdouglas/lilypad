@@ -13,9 +13,11 @@ function renderFooter() {
 }
 
 describe('Footer', () => {
-  it('renders the brand name', () => {
+  it('renders the brand logo', () => {
     renderFooter()
-    expect(screen.getByText('Lily Pad')).toBeInTheDocument()
+    const logo = screen.getByAltText('Lily Pad Logo')
+    expect(logo).toBeInTheDocument()
+    expect(logo).toHaveAttribute('src', '/lily_pad_banner_logo.png')
   })
 
   it('renders all nav links', () => {

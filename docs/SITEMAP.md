@@ -11,14 +11,14 @@
 
 | Route                                  | Page Name              | Phase | Status       | Auth Required |
 |----------------------------------------|------------------------|-------|--------------|---------------|
-| /                                      | Home                   | 1     | 🟡 In progress | No            |
-| /services                              | Services Overview      | 1     | 🟡 In progress | No            |
-| /about                                 | About                  | 1     | 🟡 In progress | No            |
-| /start                                 | Start a Project        | 1     | 🟡 In progress | No            |
-| /work                                  | Case Studies Index     | 2     | ⏳ Upcoming  | No            |
-| /work/[slug]                           | Individual Case Study  | 2     | ⏳ Upcoming  | No            |
-| /insights                              | Blog Index             | 2     | ⏳ Upcoming  | No            |
-| /insights/[slug]                       | Blog Article           | 2     | ⏳ Upcoming  | No            |
+| /                                      | Home                   | 1     | 🟢 Live      | No            |
+| /services                              | Services Overview      | 1     | 🟢 Live      | No            |
+| /about                                 | About                  | 1     | 🟢 Live      | No            |
+| /start                                 | Start a Project        | 1     | 🟢 Live      | No            |
+| /work                                  | Case Studies Index     | 2     | 🟢 Live      | No            |
+| /work/[slug]                           | Individual Case Study  | 2     | 🟢 Live      | No            |
+| /insights                              | Blog Index             | 2     | 🟢 Live      | No            |
+| /insights/[slug]                       | Blog Article           | 2     | 🟢 Live      | No            |
 | /portal                                | Portal Login/Redirect  | 3     | ⏳ Upcoming  | Yes           |
 | /portal/[client-slug]                  | Client Dashboard       | 3     | ⏳ Upcoming  | Yes           |
 | /portal/[client-slug]/[project-slug]   | Demo Viewer            | 3     | ⏳ Upcoming  | Yes           |
@@ -83,4 +83,4 @@ Sections: Headline, What to expect, Cal.com embed, Contact form fallback, Trust 
 
 ---
 
-Last updated: 2026-05-24 — P1 pages built; statuses set to 🟡 In progress pending production deploy.
+Last updated: 2026-05-24 — P1 and P2 pages fully complete; routes set to 🟢 Live.
