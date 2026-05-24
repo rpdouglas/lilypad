@@ -50,6 +50,7 @@ Examples:
 - Chose session-scoped age gate over persistent cookie — why?
 
 Format for new entries:
+
 ```
 YYYY-MM-DD — [Decision]. [One-sentence reason].
 ```
@@ -170,10 +171,13 @@ Update `docs/ACTIVE_CYCLE.md`:
 ### 5.2 Update the project spec
 
 In `docs/projects/[ID]_[FEATURE].md`, update the **Status** line:
+
 ```
 **Status:** Done — YYYY-MM-DD
 ```
+
 If any tasks were deferred, note them:
+
 ```
 **Status:** Done — YYYY-MM-DD (deferred: [item] — [reason], target: [when])
 ```

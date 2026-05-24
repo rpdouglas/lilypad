@@ -20,6 +20,7 @@ npm run test:coverage  # Coverage report → coverage/
 ```
 
 Run a single test file:
+
 ```bash
 npx vitest run src/components/ui/Button.test.tsx
 ```

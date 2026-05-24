@@ -1,6 +1,6 @@
 # Deep Dive: Initialization and Planning Prompts for React + Firebase
 
-When building applications with React, Vite, Tailwind CSS v4, and Firebase, out-of-the-box AI behaviors often lead to tech debt. A generic AI will try to invent CSS, guess Firestore schemas, or write insecure client-side logic. 
+When building applications with React, Vite, Tailwind CSS v4, and Firebase, out-of-the-box AI behaviors often lead to tech debt. A generic AI will try to invent CSS, guess Firestore schemas, or write insecure client-side logic.
 
 To prevent this, we need **Initialization Prompts** (to set hard boundaries) and **Planning Prompts** (to force structured thinking). Here is a deep dive into the anatomy of these prompts, along with drafts tailored specifically for Lily Pad Strategy & Design.
 
@@ -10,10 +10,10 @@ To prevent this, we need **Initialization Prompts** (to set hard boundaries) and
 
 **Purpose:** This is the "always-on" context loaded at the start of every AI session. It defines what the AI *is*, what it *must always do*, and critically, what it *must never do*.
 
-### Best Practice Mechanics for Our Stack:
-*   **The Component Colocation Trap:** In modern React, AI often scatters logic. The prompt must force the AI to keep Firebase calls strictly in `/lib/firebase/` and co-locate `.test.tsx` files with their components.
-*   **The Hardcoded Hex Trap:** Tailwind v4 relies heavily on a tokenized design system. The AI must be forbidden from using hardcoded hex values (e.g., `#E8614A`) and forced to use CSS variables (e.g., `var(--color-coral)` or `text-coral`).
-*   **The Schema Hallucination Trap:** Firebase's flexibility is a curse for AI. If a field isn't defined, the AI will just invent it and write it. The prompt must lock the AI to an explicit schema document.
+### Best Practice Mechanics for Our Stack
+* **The Component Colocation Trap:** In modern React, AI often scatters logic. The prompt must force the AI to keep Firebase calls strictly in `/lib/firebase/` and co-locate `.test.tsx` files with their components.
+* **The Hardcoded Hex Trap:** Tailwind v4 relies heavily on a tokenized design system. The AI must be forbidden from using hardcoded hex values (e.g., `#E8614A`) and forced to use CSS variables (e.g., `var(--color-coral)` or `text-coral`).
+* **The Schema Hallucination Trap:** Firebase's flexibility is a curse for AI. If a field isn't defined, the AI will just invent it and write it. The prompt must lock the AI to an explicit schema document.
 
 ### DRAFT: `docs/prompts/INITIALIZATION.md` (or `GEMINI.md` root file)
 
@@ -48,10 +48,10 @@ Unless instructed otherwise, you must ALWAYS use the `PLANNING.md` process for n
 
 **Purpose:** This prompt stops the AI from immediately writing code when asked to build a feature. It forces the AI to act as a system architect, analyzing risks, checking schemas, and proposing options.
 
-### Best Practice Mechanics for Our Stack:
-*   **The Compliance Gate:** Forces the AI to verify if a feature handles PII (Personally Identifiable Information), requires Cloud Function `auditLogs`, or bypasses authentication. 
-*   **The Schema Audit:** Forces the AI to explicitly list which Firestore collections are read/written, preventing silent schema drift.
-*   **The Three-Strategy Proposal:** The AI must propose a Minimal (fastest), Recommended (balanced), and Robust (most scalable) way to build the feature. This leaves the architectural decision in the hands of the human developer.
+### Best Practice Mechanics for Our Stack
+* **The Compliance Gate:** Forces the AI to verify if a feature handles PII (Personally Identifiable Information), requires Cloud Function `auditLogs`, or bypasses authentication.
+* **The Schema Audit:** Forces the AI to explicitly list which Firestore collections are read/written, preventing silent schema drift.
+* **The Three-Strategy Proposal:** The AI must propose a Minimal (fastest), Recommended (balanced), and Robust (most scalable) way to build the feature. This leaves the architectural decision in the hands of the human developer.
 
 ### DRAFT: `docs/prompts/PLANNING.md`
 

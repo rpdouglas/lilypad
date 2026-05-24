@@ -50,6 +50,7 @@ The main bundle must stay lean. Check after any new page, context, or layout com
 ### Firebase Checks
 
 If Firestore rules were modified:
+
 ```bash
 firebase emulators:start
 # Run the relevant emulator test suite

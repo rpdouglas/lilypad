@@ -4,7 +4,7 @@ Establishing the complete suite of AI instructions, prompts, and source-of-truth
 
 ## Phase 1 — Persona & Compliance Gate
 
-1. **Identify the Persona:** 
+1. **Identify the Persona:**
    - **Jordan & Marcus (All Views):** Enforces high brand standards, photography/provenance requirements, and editorial quality across all views.
    - **Sarah (The Founder):** Systematically eliminates AI tech debt and undocumented "YOLO" changes, protecting the codebase and future roadmap.
 2. **Compliance Checks:**
@@ -27,11 +27,11 @@ Provide three distinct architectural approaches for building this feature:
 
 ### Strategy A — Minimal
 *Summary of the fastest, lowest-complexity way to achieve the goal.*
-- **Architecture:** 
+- **Architecture:**
   - Extract `docs/prompts/TESTING.md`, `docs/prompts/TICKET_CLOSE.md`, and `docs/firestore-schema.md` from the reference file `docs_ac.txt`.
   - Create the `docs/plans/` directory.
   - No changes to `scripts/antigravity.js`.
-- **Trade-offs:** 
+- **Trade-offs:**
   - Misses several key prompt files (`READ_STATE.md`, `FIX.md`, `DOCS_AUDIT.md`, `APPROVAL.md`, `POST_SPRINT_AUDIT.md`, `CODEBASE_AUDIT.md`).
   - Developers must copy-paste plan templates manually when creating plans.
 - **Scope:** Small (3 files created)
@@ -56,7 +56,7 @@ Provide three distinct architectural approaches for building this feature:
 
 ### Strategy C — Robust
 *Summary of the most scalable, enterprise-grade approach.*
-- **Architecture:** 
+- **Architecture:**
   - All of Strategy B, plus copying and creating custom skills under `.gemini/skills/` (like `epic-planner`, `feature-executor`, `qa-verification`, `sprint-audit`) as found in `docs_ac.txt`.
 - **Trade-offs:** The AI assistant already has highly sophisticated built-in agent capabilities and custom skills, so replicating those skills as static files may be redundant.
 - **Scope:** Large (15+ files)
