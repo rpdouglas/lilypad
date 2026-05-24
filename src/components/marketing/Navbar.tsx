@@ -14,10 +14,14 @@ export default function Navbar() {
       <nav className="max-w-content mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
         <Link
           to="/"
-          className="font-display text-xl text-cream font-light tracking-wide hover:text-coral-light transition-colors duration-150"
-          aria-label="Lily Pad — home"
+          className="flex items-center hover:opacity-90 active:scale-95 transition-all duration-150"
+          aria-label="Lily Pad Strategy & Design Home"
         >
-          Lily Pad
+          <img
+            src="/lily_pad_banner_logo.png"
+            className="h-6 lg:h-7 w-auto object-contain"
+            alt="Lily Pad Logo"
+          />
         </Link>
 
         {/* Desktop nav */}
