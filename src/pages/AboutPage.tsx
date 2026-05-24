@@ -62,6 +62,9 @@ const HOW_WE_WORK = [
 export default function AboutPage() {
   return (
     <>
+      <title>About | Lily Pad Strategy & Design</title>
+      <meta name="description" content="We build it right the first time, regardless of your stage. Learn about Lily Pad's founder story, core values, and our exact step-by-step launch methodology." />
+
       {/* Page Hero */}
       <section className="bg-forest text-cream pt-16 pb-20 lg:pt-24 lg:pb-28">
         <div className="max-w-content mx-auto px-6 lg:px-10">

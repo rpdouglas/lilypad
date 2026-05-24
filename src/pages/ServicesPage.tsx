@@ -101,6 +101,9 @@ const PROCESS_FAQ = [
 export default function ServicesPage() {
   return (
     <>
+      <title>Services | Lily Pad Strategy & Design</title>
+      <meta name="description" content="Outcome-driven services built for founders. Positioning strategy, fast accessible web development, robust design systems, and cohesive market launch sprints." />
+
       {/* Page Hero */}
       <section className="bg-forest text-cream pt-16 pb-20 lg:pt-24 lg:pb-28">
         <div className="max-w-content mx-auto px-6 lg:px-10">

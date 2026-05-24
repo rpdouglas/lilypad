@@ -12,7 +12,7 @@ Update the Status column here when a phase opens or closes.
 |-------|-----------------|--------------|----------|------------|
 | P0    | Foundation      | ✅ Done      | Critical | 2026-05-24 |
 | P1    | Public Site MVP | 🔄 Active    | Critical | —          |
-| P2    | Work & Insights | ⏳ Next      | Critical | —          |
+| P2    | Work & Insights | ✅ Done      | Critical | 2026-05-24 |
 | P3    | Client Portal   | 📋 Planned   | Critical | —          |
 | P4    | Conversion Layer| 📋 Planned   | High     | —          |
 | P5    | Social Proof    | 📋 Planned   | High     | —          |
