@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+import { afterAll, beforeAll, vi } from 'vitest'
 
 // Mock Firebase to prevent real network calls during tests
 vi.mock('./lib/firebase/config', () => ({
