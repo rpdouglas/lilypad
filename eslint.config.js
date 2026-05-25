@@ -20,6 +20,10 @@ export default tseslint.config(
     rules: {
       // React
       ...reactHooks.configs.recommended.rules,
+      // set-state-in-effect (new in react-hooks v7) fires on all async setState in effects,
+      // including the standard cancel-flag data-fetching pattern used throughout this project.
+      // Downgraded to warn — will revisit when adopting React 19 use() for data fetching.
+      'react-hooks/set-state-in-effect': 'warn',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },

@@ -19,10 +19,10 @@
 | /work/[slug]                           | Individual Case Study  | 2     | 🟢 Live      | No            |
 | /insights                              | Blog Index             | 2     | 🟢 Live      | No            |
 | /insights/[slug]                       | Blog Article           | 2     | 🟢 Live      | No            |
-| /portal                                | Portal Login/Redirect  | 3     | ⏳ Upcoming  | Yes           |
-| /portal/[client-slug]                  | Client Dashboard       | 3     | ⏳ Upcoming  | Yes           |
-| /portal/[client-slug]/[project-slug]   | Demo Viewer            | 3     | ⏳ Upcoming  | Yes           |
-| /portal/[client-slug]/feedback         | Feedback Form          | 3     | ⏳ Upcoming  | Yes           |
+| /portal/auth                                            | Portal Sign-in         | 3     | 🟡 In progress | No            |
+| /portal/:clientSlug                                     | Client Dashboard       | 3     | 🟡 In progress | Yes           |
+| /portal/:clientSlug/:projectSlug                        | Demo Viewer            | 3     | 🟡 In progress | Yes           |
+| /portal/:clientSlug/:projectSlug/feedback               | Feedback Form          | 3     | 🟡 In progress | Yes           |
 | /resources                             | Lead Magnets           | 4     | ⏳ Upcoming  | No            |
 | /speaking                              | Media Kit & Talks      | 7     | ⏳ Upcoming  | No            |
 
@@ -56,6 +56,30 @@ Sections: Headline, What to expect, Cal.com embed, Contact form fallback, Trust 
 
 ---
 
+## Phase 3 Routes
+
+### /portal/auth — Portal Sign-in
+Persona: Dana (primary), Robert (secondary)
+Sections: Email input → "Send sign-in link" / Magic link confirmation handler / Already-authenticated redirect
+Auth: Public — redirects authenticated users to their dashboard automatically
+
+### /portal/:clientSlug — Client Dashboard
+Persona: Dana (primary)
+Sections: Project list with status badges (In Review / Approved / Archived), revision round per project
+Auth: PortalLayout guard — redirects unauthenticated visitors to /portal/auth
+
+### /portal/:clientSlug/:projectSlug — Demo Viewer
+Persona: Dana (primary), Robert (secondary)
+Sections: Deliverable embed (Figma / video / PDF / web-preview), revision round toggle, "Leave feedback" CTA (in-review projects only)
+Auth: PortalLayout guard
+
+### /portal/:clientSlug/:projectSlug/feedback — Feedback Form
+Persona: Dana (primary)
+Sections: Round label, section selector (from current-round deliverable labels), free-text textarea, submit → Firestore
+Auth: PortalLayout guard
+
+---
+
 ## Shared Layout
 
 ### RootLayout (all public routes)
@@ -83,4 +107,4 @@ Sections: Headline, What to expect, Cal.com embed, Contact form fallback, Trust 
 
 ---
 
-Last updated: 2026-05-24 — P1 and P2 pages fully complete; routes set to 🟢 Live.
+Last updated: 2026-05-25 — P1 and P2 pages fully complete; routes set to 🟢 Live. P3 portal routes added and set to 🟡 In progress. Feedback route updated to include project slug (/portal/:clientSlug/:projectSlug/feedback).

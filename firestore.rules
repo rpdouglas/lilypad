@@ -3,16 +3,50 @@ service cloud.firestore {
   match /databases/{database}/documents {
 
     // Lock everything down by default
-    // Nothing is readable or writable unless explicitly allowed below
     match /{document=**} {
       allow read, write: if false;
     }
 
-    // Clients can only read their own project data
-    // Expanded in Phase 3 when the portal is built
+    // Helper: true when the authenticated user's email matches the parent client document
+    function isClientOwner(clientId) {
+      return request.auth != null
+          && request.auth.token.email != null
+          && get(/databases/$(database)/documents/clients/$(clientId)).data.email
+             == request.auth.token.email;
+    }
+
+    // clients/{clientId}
+    // Readable only by the client whose email is on the document.
+    // Write is admin-only (Firebase console / Admin SDK) — no client-side create/update.
     match /clients/{clientId} {
       allow read: if request.auth != null
                   && request.auth.token.email == resource.data.email;
+    }
+
+    // clients/{clientId}/projects/{projectId}
+    // Read-only for the matching client. Admin-managed via console.
+    match /clients/{clientId}/projects/{projectId} {
+      allow read: if isClientOwner(clientId);
+    }
+
+    // clients/{clientId}/projects/{projectId}/deliverables/{deliverableId}
+    // Read-only for the matching client. Admin-managed via console.
+    match /clients/{clientId}/projects/{projectId}/deliverables/{deliverableId} {
+      allow read: if isClientOwner(clientId);
+    }
+
+    // clients/{clientId}/projects/{projectId}/feedback/{feedbackId}
+    // Read and create allowed for the matching client only.
+    // submittedBy must equal the authenticated user's email.
+    // body is validated: non-empty string, max 5000 chars.
+    match /clients/{clientId}/projects/{projectId}/feedback/{feedbackId} {
+      allow read: if isClientOwner(clientId);
+      allow create: if isClientOwner(clientId)
+                    && request.resource.data.submittedBy == request.auth.token.email
+                    && request.resource.data.keys().hasAll(['section', 'body', 'revisionRound', 'submittedBy', 'createdAt'])
+                    && request.resource.data.body is string
+                    && request.resource.data.body.size() > 0
+                    && request.resource.data.body.size() <= 5000;
     }
 
   }
