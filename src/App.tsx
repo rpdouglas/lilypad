@@ -1,6 +1,12 @@
 import { lazy, Suspense } from 'react'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Navigate, useOutletContext } from 'react-router-dom'
 import RootLayout from '@/layouts/RootLayout'
+import PortalLayout, { type PortalContext } from '@/layouts/PortalLayout'
+
+function PortalIndex() {
+  const { client } = useOutletContext<PortalContext>()
+  return <Navigate to={`/portal/${client.slug}`} replace />
+}
 
 const HomePage = lazy(() => import('@/pages/HomePage'))
 const ServicesPage = lazy(() => import('@/pages/ServicesPage'))
@@ -10,6 +16,11 @@ const WorkPage = lazy(() => import('@/pages/WorkPage'))
 const WorkSlugPage = lazy(() => import('@/pages/WorkSlugPage'))
 const InsightsPage = lazy(() => import('@/pages/InsightsPage'))
 const InsightsSlugPage = lazy(() => import('@/pages/InsightsSlugPage'))
+
+const PortalAuthPage = lazy(() => import('@/pages/portal/PortalAuthPage'))
+const PortalDashboardPage = lazy(() => import('@/pages/portal/PortalDashboardPage'))
+const PortalProjectPage = lazy(() => import('@/pages/portal/PortalProjectPage'))
+const PortalFeedbackPage = lazy(() => import('@/pages/portal/PortalFeedbackPage'))
 
 const router = createBrowserRouter([
   {
@@ -23,6 +34,19 @@ const router = createBrowserRouter([
       { path: '/work/:slug', element: <Suspense fallback={null}><WorkSlugPage /></Suspense> },
       { path: '/insights', element: <Suspense fallback={null}><InsightsPage /></Suspense> },
       { path: '/insights/:slug', element: <Suspense fallback={null}><InsightsSlugPage /></Suspense> },
+    ],
+  },
+  {
+    path: '/portal/auth',
+    element: <Suspense fallback={null}><PortalAuthPage /></Suspense>,
+  },
+  {
+    element: <PortalLayout />,
+    children: [
+      { path: '/portal', element: <PortalIndex /> },
+      { path: '/portal/:clientSlug', element: <Suspense fallback={null}><PortalDashboardPage /></Suspense> },
+      { path: '/portal/:clientSlug/:projectSlug', element: <Suspense fallback={null}><PortalProjectPage /></Suspense> },
+      { path: '/portal/:clientSlug/:projectSlug/feedback', element: <Suspense fallback={null}><PortalFeedbackPage /></Suspense> },
     ],
   },
 ])

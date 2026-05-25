@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "freshnest-aa51e"
-  }
+    "default": "freshnest-aa51e",
+    "prod": "freshnest-aa51e"
+  },
+  "targets": {},
+  "etags": {}
 }

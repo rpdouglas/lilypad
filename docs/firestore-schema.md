@@ -331,3 +331,63 @@ Read access: public (no auth required — displayed on public Pawn page). Write 
 | `pickupReminderSentAt` | timestamp | Set by `sendPickupReminders` CF when the 24-hour pre-pickup SMS has been dispatched. Null until sent. Prevents duplicate sends. |
 | `updatedAt` | timestamp | Set by CF on every status transition (confirm, ready, collect, cancel) |
 | `createdAt` | timestamp | Server timestamp |
+
+---
+
+## `clients/{clientId}` — portal client profiles (P3)
+
+> Readable only by the authenticated user whose email matches `resource.data.email`.
+> Created manually by Lily Pad admin. Never written by client-side code.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `email` | string | Must match `request.auth.token.email` — the Firestore rule enforcement anchor |
+| `displayName` | string | Shown in portal header (e.g. `"Acme Corp"`) |
+| `slug` | string | URL-safe identifier (e.g. `"acme-corp"`) — unique across all clients |
+| `createdAt` | timestamp | Server timestamp |
+
+---
+
+## `clients/{clientId}/projects/{projectId}` — per-client projects (P3)
+
+> Readable only by the matching authenticated client (via parent `clients/{clientId}.email` check).
+> Created and managed by Lily Pad admin. Never written by client-side code.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `title` | string | Project display name (e.g. `"Brand Identity"`) |
+| `slug` | string | URL-safe identifier (e.g. `"brand-identity"`) — unique within a client |
+| `status` | string | `in-review` \| `approved` \| `archived` |
+| `revisionRound` | number | Current revision round (1, 2, 3…) |
+| `createdAt` | timestamp | Server timestamp |
+| `updatedAt` | timestamp | Server timestamp |
+
+---
+
+## `clients/{clientId}/projects/{projectId}/deliverables/{deliverableId}` — deliverable embeds (P3)
+
+> Readable only by the matching authenticated client.
+> Created and managed by Lily Pad admin. Never written by client-side code.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `type` | string | `figma` \| `video` \| `pdf` \| `web-preview` |
+| `embedUrl` | string | Figma embed URL, Loom URL, Firebase Storage URL, or external web URL |
+| `revisionRound` | number | Which revision round this deliverable belongs to |
+| `label` | string | Display label shown in section selector (e.g. `"Brand Identity — Round 2"`) |
+| `createdAt` | timestamp | Server timestamp |
+
+---
+
+## `clients/{clientId}/projects/{projectId}/feedback/{feedbackId}` — client feedback (P3)
+
+> Readable and creatable only by the matching authenticated client.
+> `submittedBy` must equal `request.auth.token.email` — enforced in Firestore rules.
+
+| Field | Type | Notes |
+|-------|------|-------|
+| `section` | string | Client-selected section label (e.g. `"Logo"`, `"Color Palette"`) |
+| `body` | string | Free-text feedback |
+| `revisionRound` | number | Which revision round this feedback targets |
+| `submittedBy` | string | Authenticated user email — set client-side, validated by Firestore rule |
+| `createdAt` | timestamp | Server timestamp (set client-side via `Timestamp.now()`) |

@@ -74,3 +74,45 @@ Created a clean `public/robots.txt` specifying custom Allow and Disallow policie
 ## 2026-05-24 — Hoisted document metadata inside core pages
 
 Completed the meta tag audit by adding React 19 native hoisting tags (`<title>` and `<meta name="description">`) directly inside `HomePage.tsx`, `AboutPage.tsx`, `ServicesPage.tsx`, and `StartPage.tsx` to ensure all core page routes define custom SEO indexing details.
+
+---
+
+## 2026-05-25 — P3 Client Portal: Firebase email link (magic link) authentication
+
+Chose Firebase Auth's email link (passwordless) provider for portal sign-in. Rationale: clients (Dana, Robert) are non-technical and must not manage passwords. Magic links provide a friction-free sign-in with zero account creation UX. Firebase's default `LOCAL` persistence satisfies the 30-day session requirement without explicit `setPersistence` calls.
+
+---
+
+## 2026-05-25 — P3 Client Portal: Firestore subcollection schema
+
+Chose a subcollection model (`clients/{clientId}/projects/{projectId}/deliverables`, `…/feedback`) over a flat array on `clients/{clientId}`. Subcollections support revision rounds, multi-project clients, and independent access-control rules on each level. See `docs/firestore-schema.md` for all field definitions.
+
+---
+
+## 2026-05-25 — P3 Client Portal: `PortalLayout` auth guard with `subscribeToAuthState` abstraction
+
+The auth guard lives in `PortalLayout`. It subscribes to Firebase auth state via `subscribeToAuthState` (from `src/lib/firebase/auth.ts`) and looks up the client profile via `getClientByEmail` (from `src/lib/firebase/portal.ts`). Unauthenticated or unrecognized visitors are redirected to `/portal/auth`. The authenticated `user` and `client` are passed to child routes via React Router's `useOutletContext` hook.
+
+---
+
+## 2026-05-25 — P3 Client Portal: Cloud Functions deferred to follow-up PR
+
+Email notification on feedback submission and signed asset download URLs both require Firebase Cloud Functions. These are excluded from the P3 initial build to keep the scope reviewable. The Firestore feedback collection is fully functional without the notification trigger. Signed asset downloads are documented as a manual workaround until the Cloud Function is shipped.
+
+---
+
+## 2026-05-25 — P3 Client Portal: `react-hooks/set-state-in-effect` downgraded to warn in ESLint config
+
+The `eslint-plugin-react-hooks` v7 introduced `set-state-in-effect` as an error, which fires on all async `setState` calls inside `useEffect` — including the standard cancel-flag data-fetching pattern used throughout the portal pages. Rule downgraded to `warn` in `eslint.config.js`. Will revisit if/when portal data fetching adopts React 19's `use()` API with Suspense boundaries.
+
+---
+
+## 2026-05-25 — P3 Client Portal: Composite Firestore index for deliverables two-field `orderBy`
+
+Added a composite index on `deliverables` (`revisionRound DESC, createdAt DESC`) in `firestore.indexes.json`. Required because Firestore cannot serve a query with two `orderBy` fields using its auto-generated single-field indexes. Without this, the deliverables query throws at runtime with a console link to create the index.
+
+---
+
+## 2026-05-25 — P3 Client Portal: `firebase.json` updated to include Firestore targets
+
+Added `"firestore": { "rules": "firestore.rules", "indexes": "firestore.indexes.json" }` to `firebase.json`. Without this block, `firebase deploy --only firestore:rules,firestore:indexes` fails with "No targets match". The `hosting` block was the only pre-existing target.
